@@ -8,24 +8,24 @@ from django.conf import settings
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, username, email, password=None, phone_number=None,full_name=None):
+    def create_user(self, email, password=None, phone_number=None,full_name=None):
 
-        if username is None:
-            TypeError("users Should Have a username")
+        # if username is None:
+        #     TypeError("users Should Have a username")
         if email is None:
             TypeError("users Should Have an email")
         
-        user = self.model(phone_number=phone_number, full_name=full_name,username=username, email=self.normalize_email(email))
+        user = self.model(phone_number=phone_number, full_name=full_name, email=self.normalize_email(email))
 
         user.set_password(password)
         user.save()
         return user
-    def create_superuser(self, username, email, password=None):
+    def create_superuser(self, email, password=None):
     
         if password is None:
             TypeError("password should not be none")
 
-        user = self.create_user(username=username, email=email, password=password)
+        user = self.create_user(email=email, password=password)
         user.is_superuser = True
         user.is_staff = True
         user.save()
@@ -34,7 +34,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     
-    username = models.CharField(max_length=200, unique=True, db_index=True)
+    # username = models.CharField(max_length=200, unique=True, db_index=True)
     email = models.EmailField(max_length=255, unique=True, db_index=True)
     phone_number = PhoneNumberField(unique = True, null = True, blank = True)
     full_name = models.CharField(max_length=255, null=True,blank = True)
