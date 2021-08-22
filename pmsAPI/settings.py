@@ -51,9 +51,18 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'phonenumber_field',
-    'authentication',
+    'authentication',  
+    'rangeCategory',
 ]
-
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -119,7 +128,7 @@ REST_FRAMEWORK={
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME':timedelta(minutes=10),
+    'ACCESS_TOKEN_LIFETIME':timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME':timedelta(days=1)
 }
 
@@ -166,10 +175,17 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
-EMAIL_USE_TLS =True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT=587
+# EMAIL_USE_TLS =True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT=587
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
 
 django_heroku.settings(locals())

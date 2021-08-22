@@ -47,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # defining attribut to login
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    # REQUIRED_FIELDS = ['email']
 
     # manage update of type uuser 
       #instantiate the manager class
@@ -61,3 +61,4 @@ class User(AbstractBaseUser, PermissionsMixin):
             'refresh':str(refresh),
             'access':str(refresh.access_token)
         }
+
