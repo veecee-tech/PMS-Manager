@@ -33,3 +33,6 @@ class Range(models.Model):
     charge_amount = models.IntegerField()
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, default=User, null=True)
     date_added = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.in_category
