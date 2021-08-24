@@ -1,75 +1,58 @@
 from django.shortcuts import render
 from rest_framework.permissions import IsAuthenticated
-from .serializers import CategoryAPIViewSerializer
+from .serializers import CategoryAPIViewSerializer, RangeAPIViewSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rangeCategory.models import Category
+from rangeCategory.models import Category, Range
 from rest_framework import permissions
 from .permissions import IsOwner
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from rest_framework import status
+# from rest_framework.response import Response
+# from rest_framework.decorators import api_view, permission_classes
+# from rest_framework import status
 # Create your views here.
 
-# class CategoryAPIView(ListCreateAPIView):
+class CategoryAPIView(ListCreateAPIView):
 
-#     serializer_class = CategoryAPIViewSerializer
-#     queryset = Category.objects.all()
-#     permission_classes=(permissions.IsAuthenticated, IsOwner)
+    serializer_class = CategoryAPIViewSerializer
+    queryset = Category.objects.all()
+    permission_classes=(permissions.IsAuthenticated, IsOwner)
 
-#     def perform_create(self, serializer):
-#         serializer.save(owner=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
-#     def queryset(self,request):
-#         return Category.objects.filter(owner=request.user)
+    def get_queryset(self):
+        return Category.objects.filter(user=self.request.user)
     
-# class CategoryDetailAPIView(RetrieveUpdateDestroyAPIView):
+class CategoryDetailAPIView(RetrieveUpdateDestroyAPIView):
     
-#     serializer_class = CategoryAPIViewSerializer
-#     queryset = Category.objects.all()
-#     permission_classes=(permissions.IsAuthenticated,IsOwner)
-#     lookup_field = "id"
+    serializer_class = CategoryAPIViewSerializer
+    queryset = Category.objects.all()
+    permission_classes=(permissions.IsAuthenticated,IsOwner)
+    lookup_field = "id"
    
 
-#     def queryset(self):
-#         return Category.objects.all()
+    def get_queryset(self):
+        return Category.objects.all()
 
 
+class RangeAPIView(ListCreateAPIView):
 
-@api_view(['GET', 'POST'])
-def post_list(request, *args, **kwargs):
+    serializer_class = RangeAPIViewSerializer
+    queryset = Range.objects.all()
     permission_classes=(permissions.IsAuthenticated, IsOwner)
 
-    if request.method == 'GET':
-        posts = Category.objects.filter(user=request.user)
-        serializer = CategoryAPIViewSerializer(posts, many=True)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
-        return Response(serializer.data)
+    def get_queryset(self):
+        return Range.objects.filter(user=self.request.user)
+    
+class RangeDetailAPIView(RetrieveUpdateDestroyAPIView):
+    
+    serializer_class = RangeAPIViewSerializer
+    queryset = Range.objects.all()
+    permission_classes=(permissions.IsAuthenticated,IsOwner)
+    lookup_field = "id"
+   
 
-    if request.method == 'POST':
-        serializer = CategoryAPIViewSerializer(data = request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data)
-        return Response(serializer.errors)
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def post_detail(request, *args, **kwargs):
-    permission_classes=(permissions.IsAuthenticated, IsOwner)
-    try:
-        pk = int(kwargs['pk'])
-        post = Category.objects.get(pk=pk)
-    except Category.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = CategoryAPIViewSerializer(post)
-        return Response(serializer.data)
-    elif request.method == 'PUT':
-        serializer = CategoryAPIViewSerializer(post, data = request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data)
-        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
-        post.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def get_queryset(self):
+        return Range.objects.all()

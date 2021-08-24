@@ -1,14 +1,13 @@
 from django.urls import path
-from .views import post_list, post_detail
-# from .views import CategoryDetailAPIView, CategoryAPIView
-# from rest_framework_simplejwt.views import TokenRefreshView
 
+
+from .views import RangeAPIView, RangeDetailAPIView, CategoryAPIView, CategoryDetailAPIView
 
 
 urlpatterns = [
-    path('',post_list),
-    path('<int:pk>/',post_detail),
-
-    # path('',CategoryAPIView.as_view(), name='category'),
-    # path('<int:id>/', CategoryDetailAPIView.as_view(), name='category-list'),
+    path('category/',CategoryAPIView.as_view(), name='category'),
+    path('category/<int:id>/', CategoryDetailAPIView.as_view(), name='category-list'),
+    
+    path('',RangeAPIView.as_view(), name='range'),
+    path('<int:id>/', RangeDetailAPIView.as_view(), name='range-list'),
 ]
