@@ -10,6 +10,9 @@ class UserRenderer(renderers.JSONRenderer):
         response = ''
         if 'ErrorDetail' in str(data):
             response = json.dumps(({'errors': data}))
+        # elif 'detail' in str(data):
+        #     response = json.dumps(({'message': data}))
         else:
             response = json.dumps({'data': data})
         return response
+

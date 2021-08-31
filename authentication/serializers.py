@@ -54,11 +54,11 @@ class LoginSerializer(serializers.ModelSerializer):
         user = auth.authenticate(email=email, password=password)
 
         if not user:
-            raise AuthenticationFailed('invalid email or password, try again')
+            raise AuthenticationFailed({'message':'Invalid email or password'})
         if not user.is_active:
-            raise AuthenticationFailed('Account Disabled, Contact Admin')
+            raise AuthenticationFailed({'message':'Account Disabled, Contact Admin'})
         if not user.is_verified:
-            raise AuthenticationFailed('Email is not verified')
+            raise AuthenticationFailed({'message':'Email is not verified'})
 
         return {
             'email': user.email,

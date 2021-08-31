@@ -76,7 +76,7 @@ class VerifyEmail(APIView):
 
 class LoginAPIView(generics.GenericAPIView):
     serializer_class = LoginSerializer
-
+    # renderer_classes = (UserRenderer,)
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
