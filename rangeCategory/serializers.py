@@ -12,7 +12,9 @@ class CategoryAPIViewSerializer(serializers.ModelSerializer):
         fields = ['id','category_name', 'description', 'date_added']
         
 class RangeAPIViewSerializer(serializers.ModelSerializer):
-    charge_type = serializers.ChoiceField(choices=ChargeChoices,required=True)
+    # charge_type = serializers.ChoiceField(choices=ChargeChoices,required=True)
     class Meta:
         model = Range
         fields = '__all__'
+
+

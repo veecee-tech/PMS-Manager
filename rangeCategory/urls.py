@@ -1,7 +1,7 @@
 from django.urls import path
 
 
-from .views import RangeAPIView, RangeDetailAPIView, CategoryAPIView, CategoryDetailAPIView
+from .views import RangeAPIView, RangeDetailAPIView, CategoryAPIView, CategoryDetailAPIView,numberOfRangeEtsCategory
 
 
 urlpatterns = [
@@ -10,4 +10,6 @@ urlpatterns = [
     
     path('',RangeAPIView.as_view(), name='range'),
     path('<int:id>/', RangeDetailAPIView.as_view(), name='range-list'),
+
+    path('total/', numberOfRangeEtsCategory, name='num-of-range'),
 ]
