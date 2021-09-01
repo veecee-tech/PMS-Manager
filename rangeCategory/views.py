@@ -68,7 +68,7 @@ def numberOfRangeEtsCategory(request, *args, **kwargs):
     if request.method == 'GET':
         total = {
             'range': len(Range.objects.filter(user=request.user)),
-            'category': len(Category.objects.filter(user=request.user))
+            'range_category': len(Category.objects.filter(user=request.user))
         }
         # serializer = RangeAPIViewSerializer(total)
 

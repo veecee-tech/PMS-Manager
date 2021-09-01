@@ -9,7 +9,7 @@ class CategoryAPIViewSerializer(serializers.ModelSerializer):
     # date_added = serializers.DateField(read_only=True)
     class Meta:
         model = Category
-        fields = ['id','category_name', 'description', 'date_added']
+        fields = ['id','name', 'description', 'created_at']
         
 class RangeAPIViewSerializer(serializers.ModelSerializer):
     # charge_type = serializers.ChoiceField(choices=ChargeChoices,required=True)

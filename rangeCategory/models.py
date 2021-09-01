@@ -9,13 +9,13 @@ from django.utils import timezone
 
 class Category(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    category_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     description = models.TextField()
-    date_added = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now)
     
 
     def __str__(self):
-        return self.category_name 
+        return self.name 
 
 
 class ChargeChoices(models.TextChoices):
@@ -26,13 +26,13 @@ class ChargeChoices(models.TextChoices):
 class Range(models.Model):
     # charge_type_choices = (('percentage', 'Percentage'), ('quantity', 'Quantity'))
 
-    in_category = models.ForeignKey(to=Category, on_delete=models.CASCADE, default=Category, null=True)
+    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, default=Category, null=True)
     min_value = models.IntegerField()
     max_value = models.IntegerField()
     charge_type = models.CharField(choices=ChargeChoices.choices,default=ChargeChoices.PERCENTAGE, max_length=50)
     charge_amount = models.IntegerField()
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, default=User, null=True)
-    date_added = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now)
 
     # def __str__(self):
     #     # return self.in_category
