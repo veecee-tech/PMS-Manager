@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'authentication',  
     'rangeCategory',
+    'outlet',
 ]
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
