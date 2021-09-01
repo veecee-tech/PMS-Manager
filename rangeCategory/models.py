@@ -26,7 +26,7 @@ class ChargeChoices(models.TextChoices):
 class Range(models.Model):
     # charge_type_choices = (('percentage', 'Percentage'), ('quantity', 'Quantity'))
 
-    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, default=Category, null=True)
+    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, null=True)
     min_value = models.IntegerField()
     max_value = models.IntegerField()
     charge_type = models.CharField(choices=ChargeChoices.choices,default=ChargeChoices.PERCENTAGE, max_length=50)
