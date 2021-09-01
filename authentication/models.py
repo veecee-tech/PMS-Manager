@@ -60,6 +60,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         # token =
         return {
             # 'refresh':str(refresh),
-            'access':str(refresh.access_token)
+            'token':str(refresh.access_token)
         }
 
