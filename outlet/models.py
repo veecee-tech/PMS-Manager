@@ -1,7 +1,7 @@
 from django.db import models
-from authentication.models import User 
 from django.utils import timezone
 
+from authentication.models import User
 
 
 class Outlet(models.Model):
@@ -13,4 +13,3 @@ class Outlet(models.Model):
 
     def __str__(self):
         return self.outlet_name
-

@@ -8,7 +8,6 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -24,7 +23,9 @@ class Migration(migrations.Migration):
                 ('outlet_address', models.TextField()),
                 ('outlet_officer', models.CharField(default='officer_name', max_length=100)),
                 ('date_added', models.DateTimeField(default=django.utils.timezone.now)),
-                ('user', models.ForeignKey(default=authentication.models.User, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user',
+                 models.ForeignKey(default=authentication.models.User, on_delete=django.db.models.deletion.CASCADE,
+                                   to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

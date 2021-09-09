@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from .models import Category, Range, ChargeChoices
+
+from .models import Category, Range
+
+
 # from django.utils import timezone
 
 class CategoryAPIViewSerializer(serializers.ModelSerializer):
@@ -9,12 +12,11 @@ class CategoryAPIViewSerializer(serializers.ModelSerializer):
     # date_added = serializers.DateField(read_only=True)
     class Meta:
         model = Category
-        fields = ['id','name', 'description', 'created_at']
-        
+        fields = ['id', 'name', 'description', 'created_at']
+
+
 class RangeAPIViewSerializer(serializers.ModelSerializer):
     # charge_type = serializers.ChoiceField(choices=ChargeChoices,required=True)
     class Meta:
         model = Range
         fields = '__all__'
-
-

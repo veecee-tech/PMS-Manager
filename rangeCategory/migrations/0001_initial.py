@@ -8,7 +8,6 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -32,11 +31,14 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('min_value', models.IntegerField()),
                 ('max_value', models.IntegerField()),
-                ('charge_type', models.CharField(choices=[('percentage', 'Percentage'), ('quantity', 'Quantity')], default='percentage', max_length=50)),
+                ('charge_type', models.CharField(choices=[('percentage', 'Percentage'), ('quantity', 'Quantity')],
+                                                 default='percentage', max_length=50)),
                 ('charge_amount', models.IntegerField()),
                 ('created_at', models.DateTimeField(default=django.utils.timezone.now)),
-                ('category', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='rangeCategory.Category')),
-                ('user', models.ForeignKey(default=authentication.models.User, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('category', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                               to='rangeCategory.Category')),
+                ('user', models.ForeignKey(default=authentication.models.User, null=True,
+                                           on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
