@@ -7,6 +7,7 @@ from authentication.models import User
 # Create your models here.
 
 
+
 class Category(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
