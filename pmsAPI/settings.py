@@ -186,13 +186,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # EMAIL_USE_TLS = True
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
-
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
-EMAIL_HOST_PASSWORD = 'SG.Ede1RWc2Qlye4JBd_XgVoA.wnwRRZq0XH9PMydjzM2FCRJ02l2Joc5rXKK48IxP7UgCopied!'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 EMAIL_PORT = 587
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'posmgr001@gmail.com'
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 django_heroku.settings(locals())
