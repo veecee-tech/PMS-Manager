@@ -14,7 +14,7 @@ class RangeTypeChoices(models.TextChoices):
 
 class Category(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    range_type = models.CharField(choices=RangeTypeChoices.choices, max_length=255)
+    range_type = models.CharField(choices=RangeTypeChoices.choices, max_length=205)
     name = models.CharField(max_length=255)
     description = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
