@@ -14,12 +14,13 @@ class Category(models.Model):
         CUSTOMERFEE = u'customer fee for withdrawal', 'Customer Fee For Withdrawal'
         WITHDRAWAL = u'pos fee for withdrawal', 'Pos Fee For Withdrawal'
         TRANSFERFEE = u'pos fee for transfer', 'Pos Fee For Transfer'
-        
+
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    range_type = models.CharField(choices=RangeTypeChoices.choices, max_length=205)
+    
     name = models.CharField(max_length=255)
     description = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
+    range_type = models.CharField(choices=RangeTypeChoices.choices, max_length=205)
 
     def __str__(self):
         return self.name +" : " +self.range_type

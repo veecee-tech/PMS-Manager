@@ -12,7 +12,7 @@ class CategoryAPIViewSerializer(serializers.ModelSerializer):
     # date_added = serializers.DateField(read_only=True)
     class Meta:
         model = Category
-        fields = ['id', 'name', 'description', 'created_at']
+        fields = '__all__'
 
 
 class RangeAPIViewSerializer(serializers.ModelSerializer):
