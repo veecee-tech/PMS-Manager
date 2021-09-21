@@ -8,9 +8,9 @@ from authentication.models import User
 
 
 class RangeTypeChoices(models.TextChoices):
-    customer_fee = u'customer fee for withdrawal', 'Customer Fee For Withdrawal'
-    withdrawal_fee = u'pos fee for withdrawal', 'Pos Fee For Withdrawal'
-    transfer_fee = u'pos fee for transfer', 'Pos Fee For Transfer'
+    CUSTOMERFEE = u'customer fee for withdrawal', 'Customer Fee For Withdrawal'
+    WITHDRAWAL = u'pos fee for withdrawal', 'Pos Fee For Withdrawal'
+    TRANSFERFEE = u'pos fee for transfer', 'Pos Fee For Transfer'
 
 class Category(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
@@ -23,9 +23,9 @@ class Category(models.Model):
         return self.name +" : " +self.range_type
 
 
-class ChargeChoices(models.TextChoices):
-    PERCENTAGE = u'percentage', 'Percentage'
-    QUANTITY = u'quantity', 'Quantity'
+# class ChargeChoices(models.TextChoices):
+#     PERCENTAGE = u'percentage', 'Percentage'
+#     QUANTITY = u'quantity', 'Quantity'
 
 
 class Range(models.Model):
