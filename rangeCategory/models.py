@@ -15,7 +15,7 @@ class Category(models.Model):
         WITHDRAWAL = u'pos fee for withdrawal', 'Pos Fee For Withdrawal'
         TRANSFERFEE = u'pos fee for transfer', 'Pos Fee For Transfer'
 
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, default=User)
     
     name = models.CharField(max_length=255)
     description = models.TextField()
