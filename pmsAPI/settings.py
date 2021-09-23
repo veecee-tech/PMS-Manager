@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'authentication',
     'rangeCategory',
     'outlet',
+    'record',
 ]
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
