@@ -11,9 +11,9 @@ from authentication.models import User
 
 class Category(models.Model):
     class RangeTypeChoices(models.TextChoices):
-        CUSTOMERFEE = u'customer fee for withdrawal', 'Customer Fee For Withdrawal'
-        WITHDRAWAL = u'pos fee for withdrawal', 'Pos Fee For Withdrawal'
-        TRANSFERFEE = u'pos fee for transfer', 'Pos Fee For Transfer'
+        CUSTOMERFEE = u'customer_fee', 'Customer Fee For Withdrawal'
+        WITHDRAWAL = u'pos_fee_on_withdrawal', 'Pos Fee For Withdrawal'
+        TRANSFERFEE = u'pos_fee_on_transfer', 'Pos Fee For Transfer'
 
     user = models.ForeignKey(to=User,default=User, on_delete=models.CASCADE)
     
