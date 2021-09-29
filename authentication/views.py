@@ -9,6 +9,15 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from rest_framework import permissions
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework import permissions
+
+from django.contrib.auth import logout
+
+from .permissions import IsOwner
+
+
 from .models import User
 from .renderers import UserRenderer
 from .serializers import EmailVerificationSerializer, RegisterSerializer, LoginSerializer, \
@@ -82,6 +91,27 @@ class LoginAPIView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+# @api_view(["GET"])
+# @permission_classes([permissions.IsAuthenticated])
+# def User_logout(request):
+
+#     request.user.auth_token.delete()
+
+#     logout(request)
+
+#     return Response('User Logged out successfully')
+
+class Logout(generics.GenericAPIView): 
+    permission_classes = (permissions.IsAuthenticated,)
+    
+    def get(self, request,format=None): 
+
+        request.user.auth_token.delete()
+        
+        
+
+        return Response({'success': 'user logged out successfully'},status=status.HTTP_200_OK)
 
 
 class RequestPasswordResetEmail(generics.GenericAPIView):
